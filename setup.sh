@@ -39,8 +39,8 @@ echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/temp_nopasswd > /
 trap 'echo "Automation rights revoked..."; sudo rm -f /etc/sudoers.d/temp_nopasswd; echo "Installation finished. Check $LOG_FILE for details."' EXIT
 
 # 3. Update system and install base development tools
-curl -O -L https://raw.githubusercontent.com/Orphan-Crippler/archConfig/refs/heads/mastemasterr/pkglist.txt
-curl -O -L https://raw.githubusercontent.com/Orphan-Crippler/archConfig/refs/heads/mastemasterr/aurlist.txt
+curl -O -L https://raw.githubusercontent.com/Orphan-Crippler/archConfig/refs/heads/master/pkglist.txt
+curl -O -L https://raw.githubusercontent.com/Orphan-Crippler/archConfig/refs/heads/master/aurlist.txt
 echo "${GREEN}=========================================${NC}"
 echo "Updating system and installing base-devel..."
 sudo pacman -Syu --noconfirm
