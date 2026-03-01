@@ -86,9 +86,9 @@ git clone "$GITHUB_REPO" /tmp/dotfiles-config
 mkdir -p "$HOME/.config"
 cp -a /tmp/dotfiles-config/. "$HOME/.config/"
 rm -rf /tmp/dotfiles-config
-cp "$HOME/.config/cloud/sddm.conf" /etc/
+sudo mv "$HOME/.config/cloud/sddm.conf" /etc/
 mkdir -p /usr/share/sddm/themes
-cp -r "$HOME/.config/cloud" /usr/share/sddm/themes/
+sudo mv "$HOME/.config/cloud" /usr/share/sddm/themes/
 
 # 8. Verify if zsh is installed and find its path
 ZSH_PATH=$(command -v zsh)
