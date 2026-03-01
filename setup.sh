@@ -13,7 +13,7 @@ exec > "$LOG_FILE" 2>&1
 # Custom function to print messages to BOTH the screen and the log
 step() {
     # Print to the screen in bold green (using fd 3)
-    step -e "\e[1;32m==> $1\e[0m" >&3
+    echo -e "\e[1;32m==> $1\e[0m" >&3
     # Print to the log file normally
     step "==> $1"
 }
