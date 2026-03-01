@@ -44,6 +44,8 @@ step "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/temp_nopasswd > /
 trap 'step "Automation rights revoked..."; sudo rm -f /etc/sudoers.d/temp_nopasswd; step "Installation finished. Check $LOG_FILE for details."' EXIT
 
 # 3. Update system and install base development tools
+curl -O -L https://raw.githubusercontent.com/Orphan-Crippler/archConfig/refs/heads/mastemasterr/pkglist.txt
+curl -O -L https://raw.githubusercontent.com/Orphan-Crippler/archConfig/refs/heads/mastemasterr/aurlist.txt
 step "========================================="
 step "Updating system and installing base-devel..."
 sudo pacman -Syu --noconfirm
@@ -54,6 +56,7 @@ if [ -f "pkglist.txt" ]; then
     step "========================================="
     step "Pacman Go!!!"
     sudo pacman -S --needed --noconfirm - < pkglist.txt
+    sudo rm -rf pkglist.txt
 else
     step "*****************************************"
     step "Warning: pkglist.txt not found. Pacman was killed by a ghost..."
@@ -82,6 +85,7 @@ if [ -f "aurlist.txt" ]; then
     step "========================================="
     step "Installing AUR packages..."
     yay -S --needed --noconfirm - < aurlist.txt
+    sudo rm -rf aurlist.txt
 else
     step "*****************************************"
     step "Warning: aurlist.txt not found. Skipping AUR packages."
