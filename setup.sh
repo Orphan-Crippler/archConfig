@@ -1,6 +1,11 @@
 #!/bin/bash
 current_user=$(whoami)
 
+# Define color codes as variables
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color/Reset
+
 # 1. Set up logging
 # Create a log file with the current date and time
 LOG_FILE="log$(date +%H%M%S)"
@@ -13,20 +18,20 @@ set -e
 
 # Ensure the script is NOT run as root
 if [ "$EUID" -eq 0 ]; then
-  echo "*****************************************"
+  echo "${RED}*****************************************${NC}"
   echo "Error: Please run this script as your normal user, not as root."
   exit 1
 fi
 
-echo "========================================="
+echo "${GREEN}=========================================${NC}"
 echo " Package install & config setup engaged."
-echo "========================================="
+echo "${GREEN}=========================================${NC}"
 echo "Log file: $LOG_FILE"
-echo "========================================="
+echo "${GREEN}=========================================${NC}"
 
 # 2. Enable temporary passwordless sudo
 echo "Automation authentication requested..."
-echo "*****************************************"
+echo "${GREEN}*****************************************${NC}"
 # This is the ONLY time you will be prompted for a password
 echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/temp_nopasswd > /dev/null
 
@@ -36,25 +41,24 @@ trap 'echo "Automation rights revoked..."; sudo rm -f /etc/sudoers.d/temp_nopass
 # 3. Update system and install base development tools
 curl -O -L https://raw.githubusercontent.com/Orphan-Crippler/archConfig/refs/heads/mastemasterr/pkglist.txt
 curl -O -L https://raw.githubusercontent.com/Orphan-Crippler/archConfig/refs/heads/mastemasterr/aurlist.txt
-echo "========================================="
+echo "${GREEN}=========================================${NC}"
 echo "Updating system and installing base-devel..."
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed --noconfirm base-devel
 
 # 4. Install official packages
 if [ -f "pkglist.txt" ]; then
-    echo "========================================="
+    echo "${GREEN}=========================================${NC}"
     echo "Pacman Go!!!"
     sudo pacman -S --needed --noconfirm - < pkglist.txt
-    sudo rm -rf pkglist.txt
 else
-    echo "*****************************************"
+    echo "${RED}*****************************************${NC}"
     echo "Warning: pkglist.txt not found. Pacman was killed by a ghost..."
 fi
 
 # 5. Install yay
 if ! command -v yay &> /dev/null; then
-    echo "========================================="
+    echo "${GREEN}=========================================${NC}"
     echo "Installing yay (AUR helper)..."
     git clone https://aur.archlinux.org/yay.git /tmp/yay-build
     
@@ -66,24 +70,23 @@ if ! command -v yay &> /dev/null; then
     
     rm -rf /tmp/yay-build
 else
-    echo "*****************************************"
+    echo "${RED}*****************************************${NC}"
     echo "yay is already installed."
 fi
 
 # 6. Install AUR packages
 if [ -f "aurlist.txt" ]; then
-    echo "========================================="
+    echo "${GREEN}=========================================${NC}"
     echo "Installing AUR packages..."
     yay -S --needed --noconfirm - < aurlist.txt
-    sudo rm -rf aurlist.txt
 else
-    echo "*****************************************"
+    echo "${RED}*****************************************${NC}"
     echo "Warning: aurlist.txt not found. Skipping AUR packages."
 fi
 
 # 7. Install Oh My Zsh automatically
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "========================================="
+    echo "${GREEN}=========================================${NC}"
     echo "Installing Oh,My,ZSH..."
     # RUNZSH=no: Prevents dropping into a zsh prompt
     # UNATTENDED=yes: Skips the "do you want to change your default shell" prompt
@@ -91,16 +94,16 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     RUNZSH=no UNATTENDED=yes KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     
     # Manually change the default shell to Zsh for your user
-    echo "========================================="
+    echo "${GREEN}=========================================${NC}"
     echo "Changing default shell to Zsh..."
     sudo chsh -s "$(which zsh)"
 else
-    echo "========================================="
+    echo "${GREEN}=========================================${NC}"
     echo "Oh My Zsh is already installed. Skipping."
 fi
 
 # 11. Install Powerlevel10k
-echo "========================================="
+echo "${GREEN}=========================================${NC}"
 echo "Powerleveling up to 10K!!!!!!!!!!!!!!!!!!"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 
@@ -108,7 +111,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-
 # Replace the URL below with your actual repository link
 GITHUB_REPO="https://github.com/Orphan-Crippler/archConfig.git"
 
-echo "========================================="
+echo "${GREEN}=========================================${NC}"
 echo "Loading configuration files..."
 git clone "$GITHUB_REPO" /tmp/dotfiles-config
 mkdir -p "$HOME/.config"
@@ -119,12 +122,12 @@ mkdir -p /usr/share/sddm/themes
 sudo mv "$HOME/.config/cloud" /usr/share/sddm/themes/
 sudo mv "$HOME/.config/.zshrc" "$HOME/"
 
-echo "========================================="
+echo "${GREEN}=========================================${NC}"
 echo "       Setup & config complete!!!"
-echo "========================================="
+echo "${GREEN}=========================================${NC}"
 echo "    zsh & p10k need to be configured"
-echo "========================================="
+echo "${GREEN}=========================================${NC}"
 echo " Run hyprwhspr setup then reboot machine."
-echo "========================================="
+echo "${GREEN}=========================================${NC}"
 
 # The trap will automatically run here to clean up sudo access.
