@@ -5,7 +5,6 @@ bibata-cursor-theme-bin
 elephant
 elephant-desktopapplications
 elephant-providerlist
-google-chrome
 huiontablet
 hyprwhspr-git
 libmirisdr4-git
