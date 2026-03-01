@@ -46,17 +46,19 @@ fi
 
 # 5. Install yay
 if ! command -v yay &> /dev/null; then
-    echo "Aquiring yay"
+    echo "Installing yay (AUR helper)..."
     git clone https://aur.archlinux.org/yay.git /tmp/yay-build
-    cd /tmp/yay-build
-    makepkg -si --noconfirm
-    cd ~
+    
+    # Run the build in a subshell () so it doesn't change the script's working directory
+    (
+        cd /tmp/yay-build
+        makepkg -si --noconfirm
+    )
+    
     rm -rf /tmp/yay-build
 else
-    echo "yay is already available."
+    echo "yay is already installed."
 fi
-
-sleep 7 # maybe this break will help
 
 # 6. Install AUR packages
 if [ -f "aurlist.txt" ]; then
