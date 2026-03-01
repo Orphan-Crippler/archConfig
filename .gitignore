@@ -1,0 +1,16 @@
+# Ignore everything
+/*
+# Re-include the gitignore file
+!.gitignore
+# Re-include the specific directory and its entire contents
+!alacritty/
+!cloud/
+!hypr/
+!kitty/
+!qbittorrent/
+!screensver/
+!walker/
+!waybar/
+!setup.sh
+!pkglist.txt
+!aurlist.txt

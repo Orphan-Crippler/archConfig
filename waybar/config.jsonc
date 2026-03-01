@@ -1,0 +1,272 @@
+{
+  "height": 25,
+  "spacing": 10,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "custom/hyprwhspr",
+    "pulseaudio",
+    "network",
+    "tray",
+    "clock",
+    "battery",
+    "power-profiles-daemon",
+    "custom/power"
+  ],
+  "hyprland/workspaces": {
+    "format": "{name}: {icon}",
+    "format-icons": {
+      "1": "\uf4b5",
+      "2": "\ue658",
+      "3": "\udb82\ude1e",
+      "4": "\udb82\udeb6",
+      "5": "\uf4bc",
+      "6": "\uf489",
+      "7": "\ue745",
+      "8": "\udb82\udcc7",
+      "9": "\udb80\udfd2",
+      "10": "\uf21b",
+      "active": "\udb80\udd1b",
+      "default": "\uf111"
+    },
+    "persistent-workspaces": {
+      "*": 5,
+      "HDMI-A-1": 5
+    }
+  },
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+      "locked": "\uf023",
+      "unlocked": "\uf09c"
+    }
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  "sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": [
+      "",
+      "\uf2d2"
+    ],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}"
+  },
+  "mpd": {
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) \u2e28{songPosition}|{queueLength}\u2e29 {volume}% \uf001",
+    "format-disconnected": "Disconnected \uf001",
+    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped \uf001",
+    "unknown-tag": "N/A",
+    "interval": 5,
+    "consume-icons": {
+      "on": "\uf0c4 "
+    },
+    "random-icons": {
+      "off": "<span color=\"#f53c3c\">\uf074</span> ",
+      "on": "\uf074 "
+    },
+    "repeat-icons": {
+      "on": "\uf01e "
+    },
+    "single-icons": {
+      "on": "\uf01e1 "
+    },
+    "state-icons": {
+      "paused": "\uf04c",
+      "playing": "\uf04b"
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "\uf06e",
+      "deactivated": "\uf070"
+    }
+  },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10,
+    "icons": {
+      "blueman": "bluetooth"
+    }
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%H:%M:%S}",
+    "timezone": "America/New_York",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%m-%d-%Y}",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "left",
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#FF0000'><b>{}</b></span>",
+        "days": "<span color='#ffead3'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#1DFF00'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "cpu": {
+    "format": "{usage}% \uf2db",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "{}% \uf0c9"
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "{temperatureC}\u00b0C {icon}",
+    "format-icons": [
+      "\udb80\ude6c",
+      "\uf2c9",
+      "\udb80\ude6a"
+    ]
+  },
+  "backlight": {
+    "format": "{percent}% {icon}",
+    "format-icons": [
+      "\ue38d",
+      "\ue3d3",
+      "\ue3d1",
+      "\ue3cf",
+      "\ue3ce",
+      "\ue3cd",
+      "\ue3ca",
+      "\ue3c8",
+      "\ue39b"
+    ]
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon} ",
+    "format-full": "{capacity}% {icon} ",
+    "format-charging": "{capacity}% \udb80\udc84 ",
+    "format-plugged": "{capacity}% \udb85\udfe2 ",
+    "format-alt": "{time} {icon} ",
+    "format-icons": [
+      "\udb82\udc9c",
+      "\udb80\udc86",
+      "\udb80\udc88",
+      "\udb80\udc89",
+      "\udb80\udc8b"
+    ]
+  },
+  "battery#bat2": {
+    "bat": "BAT2"
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "\uf0e7",
+      "performance": "\ue890",
+      "balanced": "\uf24e",
+      "power-saver": "\udb83\udcd7"
+    }
+  },
+  "network": {
+    "format-wifi": "{essid} ({signalStrength}%) \uf1eb ",
+    "format-ethernet": "{ipaddr}/{cidr} \udb80\ude00 ",
+    "tooltip-format": "{ifname} via {gwaddr} \udb82\udd09 ",
+    "format-linked": "{ifname} (No IP) \udb80\udf19 ",
+    "format-disconnected": "Disconnected \u26a0 ",
+    "format-alt": "{ifname}: {ipaddr}/{cidr} "
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}  {format_source}",
+    "format-bluetooth": "{volume}% {icon}\uf294 {format_source}",
+    "format-bluetooth-muted": "\udb80\uddaa {icon}\uf294 {format_source}",
+    "format-muted": "\udb80\uddaa {format_source}",
+    "format-source": " {volume}% \uf130 ",
+    "format-source-muted": "\uf131",
+    "format-icons": {
+      "headphone": "\uf025",
+      "hands-free": "\udb80\udc91",
+      "headset": "\udb80\udc91",
+      "phone": "\uf095",
+      "portable": "\uf095",
+      "car": "\uf1b9",
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028"
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "custom/media": {
+    "format": "{icon} {text}",
+    "return-type": "json",
+    "max-length": 40,
+    "format-icons": {
+      "spotify": "\uf1bc",
+      "default": "\ud83c\udf9c"
+    },
+    "escape": true,
+    "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+  },
+  "custom/power": {
+    "format": "<span size='200%'>{icon}</span> ",
+    "format-icons": "\u23fb",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/power_menu.xml",
+    "menu-actions": {
+      "shutdown": "shutdown -h now",
+      "reboot": "reboot",
+      "suspend": "systemctl suspend",
+      "hibernate": "systemctl hibernate",
+      "logout": "hyprctl dispatch exit"
+    }
+  },
+  "custom/launcher": {
+    "format": "<span size='xx-large'>{icon}</span>   ",
+    "format-icons": "\udb82\udfc9",
+    "tooltip": false,
+    "on-click": "walker",
+    "on-click-right": "jgmenu_run"
+  },
+  "bluetooth": {
+    "format": "\uf294",
+    "format-disabled": "\udb80\udcb2",
+    "format-connected": "\uf294",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "blueberry"
+  },
+  "custom/hyprwhspr": {
+    "exec": "/usr/lib/hyprwhspr/config/hyprland/hyprwhspr-tray.sh status",
+    "interval": 2,
+    "return-type": "json",
+    "exec-on-event": true,
+    "format": "{}",
+    "tooltip": true
+  },
+  "include": [
+    "/home/hex/.config/waybar/hyprwhspr-module.jsonc"
+  ]
+}
