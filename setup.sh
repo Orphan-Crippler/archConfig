@@ -3,7 +3,7 @@ current_user=$(whoami)
 
 # 1. Set up logging
 # Create a log file with the current date and time
-LOG_FILE="arch_install_$(date +%Y%m%d_%H%M%S).log"
+LOG_FILE="log_$(date %H%M%S)"
 
 # Redirect stdout (1) and stderr (2) to 'tee', which prints to the screen AND writes to the file
 exec > >(tee -i "$LOG_FILE") 2>&1
@@ -13,6 +13,7 @@ set -e
 
 # Ensure the script is NOT run as root
 if [ "$EUID" -eq 0 ]; then
+  echo "*****************************************"
   echo "Error: Please run this script as your normal user, not as root."
   exit 1
 fi
@@ -25,6 +26,7 @@ echo "========================================="
 
 # 2. Enable temporary passwordless sudo
 echo "Automation authentication requested..."
+echo "*****************************************"
 # This is the ONLY time you will be prompted for a password
 echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/temp_nopasswd > /dev/null
 
@@ -32,20 +34,24 @@ echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/temp_nopasswd > /
 trap 'echo "Automation rights revoked..."; sudo rm -f /etc/sudoers.d/temp_nopasswd; echo "Installation finished. Check $LOG_FILE for details."' EXIT
 
 # 3. Update system and install base development tools
-echo "Updating system and installing base-devel and git..."
+echo "========================================="
+echo "Updating system and installing base-devel..."
 sudo pacman -Syu --noconfirm
-sudo pacman -S --needed --noconfirm base-devel git
+sudo pacman -S --needed --noconfirm base-devel
 
 # 4. Install official packages
 if [ -f "pkglist.txt" ]; then
+    echo "========================================="
     echo "Pacman Go!!!"
     sudo pacman -S --needed --noconfirm - < pkglist.txt
 else
+    echo "*****************************************"
     echo "Warning: pkglist.txt not found. Pacman was killed by a ghost..."
 fi
 
 # 5. Install yay
 if ! command -v yay &> /dev/null; then
+    echo "========================================="
     echo "Installing yay (AUR helper)..."
     git clone https://aur.archlinux.org/yay.git /tmp/yay-build
     
@@ -57,14 +63,17 @@ if ! command -v yay &> /dev/null; then
     
     rm -rf /tmp/yay-build
 else
+    echo "*****************************************"
     echo "yay is already installed."
 fi
 
 # 6. Install AUR packages
 if [ -f "aurlist.txt" ]; then
+    echo "========================================="
     echo "Installing AUR packages..."
     yay -S --needed --noconfirm - < aurlist.txt
 else
+    echo "*****************************************"
     echo "Warning: aurlist.txt not found. Skipping AUR packages."
 fi
 
@@ -85,6 +94,8 @@ cp -r "$HOME/.config/cloud" /usr/share/sddm/themes/
 ZSH_PATH=$(command -v zsh)
 
 # 9. Set shell to zsh
+echo "========================================="
+echo "           Set shell to zsh"
 sudo chsh -s "$ZSH_PATH"
 
 # 10. Install Powerlevel10k
