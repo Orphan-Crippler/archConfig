@@ -2,21 +2,11 @@
 current_user=$(whoami)
 
 # 1. Set up logging
-LOG_FILE="arch_install_$(date +%H%M%S).log"
+# Create a log file with the current date and time
+LOG_FILE="log$(date +%H%M%S)"
 
-# Save the original terminal output (screen) to File Descriptor 3
-exec 3>&1
-
-# Redirect all standard output (1) and errors (2) silently to the log file
-exec > "$LOG_FILE" 2>&1
-
-# Custom function to print messages to BOTH the screen and the log
-step() {
-    # Print to the screen in bold green (using fd 3)
-    echo -e "\e[1;32m==> $1\e[0m" >&3
-    # Print to the log file normally
-    step "==> $1"
-}
+# Redirect stdout (1) and stderr (2) to 'tee', which prints to the screen AND writes to the file
+exec > >(tee -i "$LOG_FILE") 2>&1
 
 # Exit immediately if any command fails
 set -e
