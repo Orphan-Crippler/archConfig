@@ -1,6 +1,5 @@
 android-sdk-platform-tools
 archlinux-themes-sddm
-awesome-omarchy-tui-bin
 bibata-cursor-theme-bin
 elephant
 elephant-desktopapplications
