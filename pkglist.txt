@@ -1,12 +1,10 @@
 airspy
 alacritty
-archiso
 arm-none-eabi-gcc
 arm-none-eabi-newlib
 audacity
 avrdude
 base
-base-devel
 blueman
 bluez
 bluez-utils
@@ -31,7 +29,6 @@ freerdp
 fzf
 galculator
 gimp
-git
 grim
 grub
 grub-btrfs
