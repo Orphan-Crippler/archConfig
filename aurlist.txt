@@ -15,7 +15,6 @@ satdump
 sdrangel-bin
 sdrsharp
 sdrtrunk-bin
-snapd
 sweet-cursors-hyprcursor-git
 terminaltexteffects-git
 thonny
