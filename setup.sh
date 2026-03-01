@@ -77,11 +77,35 @@ else
     echo "Warning: aurlist.txt not found. Skipping AUR packages."
 fi
 
+# 7. Install Oh My Zsh automatically
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "========================================="
+    echo "Installing Oh,My,ZSH..."
+    # RUNZSH=no: Prevents dropping into a zsh prompt
+    # UNATTENDED=yes: Skips the "do you want to change your default shell" prompt
+    # KEEP_ZSHRC=yes: Protects your existing .zshrc if you already pulled it
+    RUNZSH=no UNATTENDED=yes KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    
+    # Manually change the default shell to Zsh for your user
+    echo "========================================="
+    echo "Changing default shell to Zsh..."
+    sudo chsh -s "$(which zsh)"
+else
+    echo "========================================="
+    echo "Oh My Zsh is already installed. Skipping."
+fi
+
+# 11. Install Powerlevel10k
+echo "========================================="
+echo "Powerleveling up to 10K!!!!!!!!!!!!!!!!!!"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+
 # 7. Pull .config from GitHub and put shit where it belongs
 # Replace the URL below with your actual repository link
 GITHUB_REPO="https://github.com/Orphan-Crippler/archConfig.git"
 
-echo "Pulling .config files from GitHub..."
+echo "========================================="
+echo "Loading configuration files..."
 git clone "$GITHUB_REPO" /tmp/dotfiles-config
 mkdir -p "$HOME/.config"
 cp -a /tmp/dotfiles-config/. "$HOME/.config/"
@@ -89,18 +113,7 @@ rm -rf /tmp/dotfiles-config
 sudo mv "$HOME/.config/cloud/sddm.conf" /etc/
 mkdir -p /usr/share/sddm/themes
 sudo mv "$HOME/.config/cloud" /usr/share/sddm/themes/
-
-# 8. Verify if zsh is installed and find its path
-ZSH_PATH=$(command -v zsh)
-
-# 9. Set shell to zsh
-echo "========================================="
-echo "           Set shell to zsh"
-sudo chsh -s "$ZSH_PATH"
-
-# 10. Install Powerlevel10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-
+sudo mv "$HOME/.config/.zshrc" "$HOME/"
 
 echo "========================================="
 echo "       Setup & config complete!!!"

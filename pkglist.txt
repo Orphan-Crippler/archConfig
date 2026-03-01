@@ -12,6 +12,7 @@ chromium
 clang
 cmatrix
 codec2
+curl
 dfu-programmer
 dfu-util
 dos2unix
