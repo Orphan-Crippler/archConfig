@@ -56,6 +56,8 @@ else
     echo "yay is already available."
 fi
 
+sleep 7 # maybe this break will help
+
 # 6. Install AUR packages
 if [ -f "aurlist.txt" ]; then
     echo "Installing AUR packages..."
@@ -73,9 +75,9 @@ git clone "$GITHUB_REPO" /tmp/dotfiles-config
 mkdir -p "$HOME/.config"
 cp -a /tmp/dotfiles-config/. "$HOME/.config/"
 rm -rf /tmp/dotfiles-config
-mv "$HOME/.config/cloud/sddm.conf" /etc/
+cp "$HOME/.config/cloud/sddm.conf" /etc/
 mkdir -p /usr/share/sddm/themes
-mv -r "$HOME/.config/cloud" /usr/share/sddm/themes/
+cp -r "$HOME/.config/cloud" /usr/share/sddm/themes/
 
 # 8. Verify if zsh is installed and find its path
 ZSH_PATH=$(command -v zsh)
