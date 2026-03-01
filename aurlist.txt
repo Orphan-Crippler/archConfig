@@ -9,7 +9,6 @@ hyprwhspr-git
 libmirisdr4-git
 notepadnext-bin
 open-tv-bin
-qt5-webengine
 satdump
 sdrangel-bin
 sdrsharp
