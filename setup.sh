@@ -28,10 +28,11 @@ echo "========================================="
 echo "Automation authentication requested..."
 echo "*****************************************"
 # This is the ONLY time you will be prompted for a password
+
 echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/temp_nopasswd > /dev/null
 
 # Set the fail-safe trap to ALWAYS revoke passwordless sudo when the script exits
-trap 'echo "*****************************************"; echo "Automation rights revoked..."; sudo rm -f /etc/sudoers.d/temp_nopasswd; echo "Installation finished. Check $LOG_FILE for details."' EXIT
+trap 'echo "Automation rights revoked..."; sudo rm -f /etc/sudoers.d/temp_nopasswd; echo "Installation finished. Check $LOG_FILE for details."' EXIT
 
 # 3. Update system and install base development tools
 curl -O -L https://raw.githubusercontent.com/Orphan-Crippler/archConfig/refs/heads/master/pkglist.txt
