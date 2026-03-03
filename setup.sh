@@ -92,7 +92,7 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     # Manually change the default shell to Zsh for your user
     echo "========================================="
     echo "Changing default shell to Zsh..."
-    sudo chsh -s "$(which zsh)" "$USER"
+    sudo usermod -s "$(which zsh)" "$USER"
 else
     echo "========================================="
     echo "Oh My Zsh is already installed. Skipping."
