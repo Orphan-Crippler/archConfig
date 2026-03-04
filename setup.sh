@@ -81,21 +81,15 @@ else
 fi
 
 # 7. Install Oh My Zsh automatically
+step "Installing Oh,My,ZSH..."
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "========================================="
-    echo "Installing Oh,My,ZSH..."
-    # RUNZSH=no: Prevents dropping into a zsh prompt
-    # UNATTENDED=yes: Skips the "do you want to change your default shell" prompt
-    # KEEP_ZSHRC=yes: Protects your existing .zshrc if you already pulled it
-    RUNZSH=no UNATTENDED=yes KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # The "" is required immediately after the script string so the flags are passed correctly!
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
     
-    # Manually change the default shell to Zsh for your user
-    echo "========================================="
-    echo "Changing default shell to Zsh..."
+    step "Changing default shell to Zsh..."
     sudo usermod -s "$(which zsh)" "$USER"
 else
-    echo "========================================="
-    echo "Oh My Zsh is already installed. Skipping."
+    step "Oh My Zsh is already installed. Skipping."
 fi
 
 # 11. Install Powerlevel10k
