@@ -36,10 +36,10 @@ trap 'echo "Automation rights revoked..."; sudo rm -f /etc/sudoers.d/temp_nopass
 
 # 3. Update system and install base development tools
 echo "========================================="
-echo "Updating system and installing base-devel..."
+echo "Updating system and installing dependancies..."
 sudo pacman -Syu --noconfirm
 # Added git, curl, and zsh here to ensure they exist for the upcoming steps
-sudo pacman -S --needed --noconfirm base-devel git curl zsh
+sudo pacman -S --needed --noconfirm base-devel curl zsh
 curl -O -L https://raw.githubusercontent.com/Orphan-Crippler/archConfig/refs/heads/master/pkglist.txt
 curl -O -L https://raw.githubusercontent.com/Orphan-Crippler/archConfig/refs/heads/master/aurlist.txt
 
