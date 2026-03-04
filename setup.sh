@@ -40,7 +40,8 @@ curl -O -L https://raw.githubusercontent.com/Orphan-Crippler/archConfig/refs/hea
 echo "========================================="
 echo "Updating system and installing base-devel..."
 sudo pacman -Syu --noconfirm
-sudo pacman -S --needed --noconfirm base-devel
+# Added git, curl, and zsh here to ensure they exist for the upcoming steps
+sudo pacman -S --needed --noconfirm base-devel git curl zsh
 
 # 4. Install official packages
 if [ -f "pkglist.txt" ]; then
@@ -92,12 +93,15 @@ else
     echo "Oh My Zsh is already installed. Skipping."
 fi
 
-# 11. Install Powerlevel10k
+# 8. Install Powerlevel10k
 echo "========================================="
 echo "Powerleveling up to 10K!!!!!!!!!!!!!!!!!!"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+# Fixed the GitHub 500 error by downloading the tarball instead of using git clone
+P10K_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+mkdir -p "$P10K_DIR"
+curl -fsSL https://github.com/romkatv/powerlevel10k/archive/master.tar.gz | tar -xz -C "$P10K_DIR" --strip-components=1
 
-# 7. Pull .config from GitHub and put shit where it belongs
+# 9. Pull .config from GitHub and put shit where it belongs
 # Replace the URL below with your actual repository link
 GITHUB_REPO="https://github.com/Orphan-Crippler/archConfig.git"
 
@@ -108,14 +112,18 @@ mkdir -p "$HOME/.config"
 cp -a /tmp/dotfiles-config/. "$HOME/.config/"
 rm -rf /tmp/dotfiles-config
 sudo mv "$HOME/.config/cloud/sddm.conf" /etc/
-mkdir -p /usr/share/sddm/themes
+# Added sudo to the mkdir command since /usr/share is a root directory
+sudo mkdir -p /usr/share/sddm/themes
 sudo mv "$HOME/.config/cloud" /usr/share/sddm/themes/
 sudo mv "$HOME/.config/.zshrc" "$HOME/"
+sudo rm -rf pkglist.txt
+sudo rm -rf aurlist.txt
+sudo rm -rf setup.sh
 
 echo "========================================="
 echo "       Setup & config complete!!!"
 echo "========================================="
-echo "    zsh & p10k need to be configured"
+echo " P10K config will start in new terminal."
 echo "========================================="
 echo " Run hyprwhspr setup then reboot machine."
 echo "========================================="
