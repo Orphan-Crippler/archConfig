@@ -1,10 +1,12 @@
 android-sdk-platform-tools
 bibata-cursor-theme-bin
+cnrdrvcups-lb-bin
 elephant
 elephant-desktopapplications
 elephant-providerlist
 huiontablet
 hyprwhspr-git
+libjpeg6-turbo
 notepadnext-bin
 open-tv-bin
 sweet-cursors-hyprcursor-git

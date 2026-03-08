@@ -1,5 +1,6 @@
 airspy
 alacritty
+antiword
 arm-none-eabi-gcc
 arm-none-eabi-newlib
 audacity
@@ -12,18 +13,24 @@ chromium
 clang
 cmatrix
 codec2
+cups
+cups-pdf
 curl
 dfu-programmer
 dfu-util
+docx2txt
 dos2unix
 dsdcc
 efibootmgr
 fastfetch
 firefox
 flameshot
+foomatic-db-engine
+foomatic-db-nonfree
 freerdp
 fzf
 galculator
+ghostscript
 gimp
 grub-btrfs
 hackrf
@@ -39,6 +46,7 @@ jq
 kdenlive
 libvncserver
 linux-headers
+logrotate
 lolcat
 man-db
 mbelib
@@ -70,6 +78,7 @@ samba
 sddm-kcm
 sof-firmware
 solaar
+system-config-printer
 ttf-bigblueterminal-nerd
 ttf-hack-nerd
 ttf-heavydata-nerd
