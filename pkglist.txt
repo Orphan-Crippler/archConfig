@@ -82,10 +82,10 @@ system-config-printer
 ttf-bigblueterminal-nerd
 ttf-hack-nerd
 ttf-heavydata-nerd
-ttf-sharetech-mono-nerd
 ttf-nerd-fonts-symbols-mono
-ttf-terminus-nerd
 ttf-roboto-mono-nerd
+ttf-sharetech-mono-nerd
+ttf-terminus-nerd
 ttf-ubuntu-mono-nerd
 unzip
 usbutils
