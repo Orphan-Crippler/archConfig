@@ -34,6 +34,13 @@ echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/temp_nopasswd > /
 # Set the fail-safe trap to ALWAYS revoke passwordless sudo when the script exits
 trap 'echo "Automation rights revoked..."; sudo rm -f /etc/sudoers.d/temp_nopasswd; echo "Installation finished. Check $LOG_FILE for details."' EXIT
 
+#!/bin/bash
+TARGET_PATTERN="[options]"
+NEW_CONTENT="ILoveCandy"
+
+sed -i "/${TARGET_PATTERN}/a ${NEW_CONTENT}" /etc/pacman.conf
+
+
 # 3. Update system and install base development tools
 echo "========================================="
 echo "Updating system and installing dependancies..."
