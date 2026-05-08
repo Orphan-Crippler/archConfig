@@ -1,6 +1,7 @@
 #!/bin/bash
 current_user=$(whoami)
-
+TARGET_PATTERN="[options]"
+NEW_CONTENT="ILoveCandy"
 # 1. Set up logging
 # Create a log file with the current date and time
 LOG_FILE="log$(date +%H%M%S)"
@@ -33,10 +34,6 @@ echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/temp_nopasswd > /
 
 # Set the fail-safe trap to ALWAYS revoke passwordless sudo when the script exits
 trap 'echo "Automation rights revoked..."; sudo rm -f /etc/sudoers.d/temp_nopasswd; echo "Installation finished. Check $LOG_FILE for details."' EXIT
-
-#!/bin/bash
-TARGET_PATTERN="[options]"
-NEW_CONTENT="ILoveCandy"
 
 sed -i "/${TARGET_PATTERN}/a ${NEW_CONTENT}" /etc/pacman.conf
 
