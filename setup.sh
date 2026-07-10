@@ -118,9 +118,9 @@ cp -a /tmp/dotfiles-config/. "$HOME/.config/"
 rm -rf /tmp/dotfiles-config
 echo "========================================="
 echo "Setting up SDDM theme and configuring ZSH"
-sudo mv "$HOME/.config/cloud/sddm.conf" /etc/
+sudo mv "$HOME/.config/ff/sddm.conf" /etc/
 sudo mkdir -p /usr/share/sddm/themes
-sudo mv "$HOME/.config/cloud" /usr/share/sddm/themes/
+sudo mv "$HOME/.config/ff" /usr/share/sddm/themes/
 sudo mv "$HOME/.config/.zshrc" "$HOME/"
 echo "========================================="
 echo "           Cleaning up install"
