@@ -1,13 +1,8 @@
 {
   "height": 25,
   "spacing": 10,
-  "modules-left": [
-    "custom/launcher",
-    "hyprland/workspaces"
-  ],
-  "modules-center": [
-    "hyprland/window"
-  ],
+  "modules-left": ["custom/launcher", "hyprland/workspaces"],
+  "modules-center": ["hyprland/window"],
   "modules-right": [
     "custom/hyprwhspr",
     "pulseaudio",
@@ -16,7 +11,7 @@
     "clock",
     "battery",
     "power-profiles-daemon",
-    "custom/power"
+    "custom/power",
   ],
   "hyprland/workspaces": {
     "format": "{name}: {icon}",
@@ -32,12 +27,12 @@
       "9": "\udb80\udfd2",
       "10": "\uf21b",
       "active": "\udb80\udd1b",
-      "default": "\uf111"
+      "default": "\uf111",
     },
     "persistent-workspaces": {
       "*": 5,
-      "HDMI-A-1": 5
-    }
+      "HDMI-A-1": 5,
+    },
   },
   "keyboard-state": {
     "numlock": true,
@@ -45,21 +40,18 @@
     "format": "{name} {icon}",
     "format-icons": {
       "locked": "\uf023",
-      "unlocked": "\uf09c"
-    }
+      "unlocked": "\uf09c",
+    },
   },
   "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>"
+    "format": "<span style=\"italic\">{}</span>",
   },
   "sway/scratchpad": {
     "format": "{icon} {count}",
     "show-empty": false,
-    "format-icons": [
-      "",
-      "\uf2d2"
-    ],
+    "format-icons": ["", "\uf2d2"],
     "tooltip": true,
-    "tooltip-format": "{app}: {title}"
+    "tooltip-format": "{app}: {title}",
   },
   "mpd": {
     "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) \u2e28{songPosition}|{queueLength}\u2e29 {volume}% \uf001",
@@ -68,38 +60,38 @@
     "unknown-tag": "N/A",
     "interval": 5,
     "consume-icons": {
-      "on": "\uf0c4 "
+      "on": "\uf0c4 ",
     },
     "random-icons": {
       "off": "<span color=\"#f53c3c\">\uf074</span> ",
-      "on": "\uf074 "
+      "on": "\uf074 ",
     },
     "repeat-icons": {
-      "on": "\uf01e "
+      "on": "\uf01e ",
     },
     "single-icons": {
-      "on": "\uf01e1 "
+      "on": "\uf01e1 ",
     },
     "state-icons": {
       "paused": "\uf04c",
-      "playing": "\uf04b"
+      "playing": "\uf04b",
     },
     "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)"
+    "tooltip-format-disconnected": "MPD (disconnected)",
   },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": "\uf06e",
-      "deactivated": "\uf070"
-    }
+      "deactivated": "\uf070",
+    },
   },
   "tray": {
     "icon-size": 21,
     "spacing": 10,
     "icons": {
-      "blueman": "bluetooth"
-    }
+      "blueman": "bluetooth",
+    },
   },
   "clock": {
     "interval": 1,
@@ -118,30 +110,26 @@
         "days": "<span color='#ffead3'><b>{}</b></span>",
         "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#1DFF00'><b><u>{}</u></b></span>"
-      }
+        "today": "<span color='#1DFF00'><b><u>{}</u></b></span>",
+      },
     },
     "actions": {
       "on-click-right": "mode",
       "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-    }
+      "on-scroll-down": "shift_down",
+    },
   },
   "cpu": {
     "format": "{usage}% \uf2db",
-    "tooltip": false
+    "tooltip": false,
   },
   "memory": {
-    "format": "{}% \uf0c9"
+    "format": "{}% \uf0c9",
   },
   "temperature": {
     "critical-threshold": 80,
     "format": "{temperatureC}\u00b0C {icon}",
-    "format-icons": [
-      "\udb80\ude6c",
-      "\uf2c9",
-      "\udb80\ude6a"
-    ]
+    "format-icons": ["\udb80\ude6c", "\uf2c9", "\udb80\ude6a"],
   },
   "backlight": {
     "format": "{percent}% {icon}",
@@ -154,13 +142,13 @@
       "\ue3cd",
       "\ue3ca",
       "\ue3c8",
-      "\ue39b"
-    ]
+      "\ue39b",
+    ],
   },
   "battery": {
     "states": {
       "warning": 30,
-      "critical": 15
+      "critical": 15,
     },
     "format": "{capacity}% {icon} ",
     "format-full": "{capacity}% {icon} ",
@@ -172,11 +160,11 @@
       "\udb80\udc86",
       "\udb80\udc88",
       "\udb80\udc89",
-      "\udb80\udc8b"
-    ]
+      "\udb80\udc8b",
+    ],
   },
   "battery#bat2": {
-    "bat": "BAT2"
+    "bat": "BAT2",
   },
   "power-profiles-daemon": {
     "format": "{icon}",
@@ -186,8 +174,8 @@
       "default": "\uf0e7",
       "performance": "\ue890",
       "balanced": "\uf24e",
-      "power-saver": "\udb83\udcd7"
-    }
+      "power-saver": "\udb83\udcd7",
+    },
   },
   "network": {
     "format-wifi": "{essid} ({signalStrength}%) \uf1eb ",
@@ -195,7 +183,7 @@
     "tooltip-format": "{ifname} via {gwaddr} \udb82\udd09 ",
     "format-linked": "{ifname} (No IP) \udb80\udf19 ",
     "format-disconnected": "Disconnected \u26a0 ",
-    "format-alt": "{ifname}: {ipaddr}/{cidr} "
+    "format-alt": "{ifname}: {ipaddr}/{cidr} ",
   },
   "pulseaudio": {
     "format": "{volume}% {icon}  {format_source}",
@@ -211,13 +199,9 @@
       "phone": "\uf095",
       "portable": "\uf095",
       "car": "\uf1b9",
-      "default": [
-        "\uf026",
-        "\uf027",
-        "\uf028"
-      ]
+      "default": ["\uf026", "\uf027", "\uf028"],
     },
-    "on-click": "pavucontrol"
+    "on-click": "pavucontrol",
   },
   "custom/media": {
     "format": "{icon} {text}",
@@ -225,10 +209,10 @@
     "max-length": 40,
     "format-icons": {
       "spotify": "\uf1bc",
-      "default": "\ud83c\udf9c"
+      "default": "\ud83c\udf9c",
     },
     "escape": true,
-    "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+    "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null",
   },
   "custom/power": {
     "format": "<span size='200%'>{icon}</span> ",
@@ -241,22 +225,22 @@
       "reboot": "reboot",
       "suspend": "systemctl suspend",
       "hibernate": "systemctl hibernate",
-      "logout": "hyprctl dispatch exit"
-    }
+      "logout": "hyprctl dispatch 'hl.dsp.exit()'",
+    },
   },
   "custom/launcher": {
     "format": "<span size='xx-large'>{icon}</span>   ",
     "format-icons": "\udb82\udfc9",
     "tooltip": false,
     "on-click": "walker",
-    "on-click-right": "jgmenu_run"
+    "on-click-right": "jgmenu_run",
   },
   "bluetooth": {
     "format": "\uf294",
     "format-disabled": "\udb80\udcb2",
     "format-connected": "\uf294",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "blueberry"
+    "on-click": "blueberry",
   },
   "custom/hyprwhspr": {
     "exec": "/usr/lib/hyprwhspr/config/hyprland/hyprwhspr-tray.sh status",
@@ -264,9 +248,7 @@
     "return-type": "json",
     "exec-on-event": true,
     "format": "{}",
-    "tooltip": true
+    "tooltip": true,
   },
-  "include": [
-    "/home/hex/.config/waybar/hyprwhspr-module.jsonc"
-  ]
+  "include": ["/home/hex/.config/waybar/hyprwhspr-module.jsonc"],
 }
