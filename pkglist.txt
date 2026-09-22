@@ -58,6 +58,7 @@ neovim
 netcat
 network-manager-applet
 networkmanager
+nmap
 nwg-look
 opencv
 openocd
@@ -94,6 +95,7 @@ waybar
 weechat
 wget
 wireguard-tools
+wireshark-qt
 wl-clipboard
 xorg-xhost
 ydotool
