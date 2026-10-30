@@ -11,7 +11,6 @@ notepadnext-bin
 open-tv-bin
 sweet-cursors-hyprcursor-git
 terminaltexteffects-git
-thonny
 timeshift-autosnap
 visual-studio-code-bin
 walker-bin
