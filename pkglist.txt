@@ -91,6 +91,8 @@ ttf-ubuntu-mono-nerd
 unzip
 usbutils
 virt-viewer
+vlc
+vlc-all-plugins
 waybar
 weechat
 wget

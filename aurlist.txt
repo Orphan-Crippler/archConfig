@@ -12,5 +12,6 @@ open-tv-bin
 sweet-cursors-hyprcursor-git
 terminaltexteffects-git
 timeshift-autosnap
+tmog-bin
 visual-studio-code-bin
 walker-bin
