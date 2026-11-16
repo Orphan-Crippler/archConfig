@@ -17,26 +17,19 @@ focused=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')
 terminal=Alacritty
 
 for m in $(hyprctl monitors -j | jq -r '.[] | .name'); do
-  hyprctl dispatch focusmonitor $m
+  # Lua-style focus dispatcher
+  hyprctl dispatch "hl.dsp.focus({ monitor = \"$m\" })"
 
   case $terminal in
   *Alacritty*)
-    hyprctl dispatch exec -- \
-      alacritty --class=org.orphan.screensaver \
-      --config-file ~/.config/alacritty/screensaver.toml \
-      -e ~/.config/screensaver/cmd-screensaver.sh
+    # The whole command, flags included, is one string for hl.dsp.exec_cmd
+    hyprctl dispatch "hl.dsp.exec_cmd('alacritty --class=org.orphan.screensaver --config-file ~/.config/alacritty/screensaver.toml -e ~/.config/screensaver/cmd-screensaver.sh')"
     ;;
   *ghostty*)
-    hyprctl dispatch exec -- \
-      ghostty --class=org.orphan.screensaver \
-      --font-size=18 \
-      -e ~/.config/screensaver/cmd-screensaver.sh
+    hyprctl dispatch "hl.dsp.exec_cmd('ghostty --class=org.orphan.screensaver --font-size=18 -e ~/.config/screensaver/cmd-screensaver.sh')"
     ;;
   *kitty*)
-    hyprctl dispatch exec -- \
-      kitty --class=org.orphan.screensaver \
-      --override font_size=18 \
-      -e ~/.config/screensaver/cmd-screensaver.sh
+    hyprctl dispatch "hl.dsp.exec_cmd('kitty --class=org.orphan.screensaver --override font_size=18 -e ~/.config/screensaver/cmd-screensaver.sh')"
     ;;
   *)
     notify-send "✋  Screensaver only runs in Alacritty, Ghostty, or Kitty"
@@ -44,4 +37,5 @@ for m in $(hyprctl monitors -j | jq -r '.[] | .name'); do
   esac
 done
 
-hyprctl dispatch focusmonitor $focused
+# Restore focus to the originally focused monitor
+hyprctl dispatch "hl.dsp.focus({ monitor = \"$focused\" })"
