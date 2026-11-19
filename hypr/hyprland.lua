@@ -338,7 +338,7 @@ hl.bind(mainMod .. " + " .. "E", hl.dsp.exit())
 
 hl.bind(mainMod .. " + " .. "F", hl.dsp.exec_cmd("nemo"))
 
-hl.bind(mainMod .. " + " .. "T", hl.dsp.window.float())
+hl.bind(mainMod .. " + " .. "K", hl.dsp.window.float())
 
 hl.bind(mainMod .. " + " .. "ALT" .. " + " .. "SPACE", hl.dsp.exec_cmd("walker"))
 
@@ -357,6 +357,8 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "W", hl.dsp.exec_cmd("~/.config/
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "A", hl.dsp.exec_cmd("alacritty --hold --title \"AUR Manager\" -e sh -c \"~/.config/hypr/binds/aur.sh\""))
 
 hl.bind(mainMod .. " + " .. "I", hl.dsp.exec_cmd("alacritty --hold --title \"Task Manager\" -e btop"))
+
+hl.bind(mainMod .. " + " .. "T", hl.dsp.exec_cmd("tmog-task-manager"))
 
 hl.bind(mainMod .. " + " .. "L", hl.dsp.exec_cmd("~/.config/hypr/binds/hyprlock.sh"))
 
